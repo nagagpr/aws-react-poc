@@ -66,6 +66,12 @@ aws-react-deployment-poc/
 │   ├── main.jsx         # React entry point
 │   └── index.css        # Global styles / design tokens
 │
+├── .github/workflows/
+│   └── deploy-ecs.yml   # GitHub Actions: build -> ECR -> ECS Express Mode
+│
+├── docs/
+│   └── GITHUB_ACTIONS_ECS_SETUP.md
+│
 ├── .dockerignore
 ├── .gitignore
 ├── Dockerfile           # Multi-stage build: Node 22 build -> Nginx runtime
@@ -544,6 +550,12 @@ aws ecr list-images --repository-name aws-react-deployment-poc --region <AWS_REG
 ---
 
 ## 13. AWS App Runner Deployment
+
+> **Update (September 2026):** AWS App Runner stopped accepting new customers on
+> April 30, 2026, so accounts without an existing App Runner service cannot create one.
+> Use the automated **GitHub Actions → Amazon ECR → Amazon ECS Express Mode** pipeline
+> instead — setup guide: [docs/GITHUB_ACTIONS_ECS_SETUP.md](docs/GITHUB_ACTIONS_ECS_SETUP.md).
+> The steps below are kept for accounts that still have App Runner access.
 
 AWS App Runner pulls the image from ECR, runs it, and exposes it behind a managed HTTPS endpoint – no servers, load balancers or certificates to manage.
 

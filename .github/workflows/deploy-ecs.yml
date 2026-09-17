@@ -38,6 +38,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Check required repository secrets
+        env:
+          DEPLOY_ROLE: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          EXEC_ROLE: ${{ secrets.ECS_EXECUTION_ROLE_ARN }}
+          INFRA_ROLE: ${{ secrets.ECS_INFRASTRUCTURE_ROLE_ARN }}
+        run: |
+          missing=0
+          [ -z "$DEPLOY_ROLE" ] && { echo "::error::Repository secret AWS_DEPLOY_ROLE_ARN is not set"; missing=1; }
+          [ -z "$EXEC_ROLE" ]   && { echo "::error::Repository secret ECS_EXECUTION_ROLE_ARN is not set"; missing=1; }
+          [ -z "$INFRA_ROLE" ]  && { echo "::error::Repository secret ECS_INFRASTRUCTURE_ROLE_ARN is not set"; missing=1; }
+          if [ "$missing" = 1 ]; then
+            echo "::error::Follow docs/GITHUB_ACTIONS_ECS_SETUP.md, then re-run this workflow."
+            exit 1
+          fi
+
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v5
         with:
