@@ -52,7 +52,12 @@ const comparisonRows = [
   { feature: 'Amazon ECR', amplify: 'No', container: 'Yes' },
   { feature: 'ECS Express Mode', amplify: 'No', container: 'Yes' },
   { feature: 'Git-based Deployment', amplify: 'Yes', container: 'Yes' },
+  { feature: 'Build and Deploy', amplify: 'Managed by Amplify', container: 'Managed by GitHub Actions' },
+  { feature: 'Scaling', amplify: 'Built-in frontend scaling', container: 'Configurable task scaling' },
+  { feature: 'Operational Effort', amplify: 'Lower', container: 'Higher' },
   { feature: 'Infrastructure Control', amplify: 'Lower', container: 'Higher' },
+  { feature: 'Cost Model', amplify: 'Build and hosting usage', container: 'Build, registry, compute and networking usage' },
+  { feature: 'Typical Cost Profile', amplify: 'Lower for static frontends', container: 'Higher baseline for always-on containers' },
   {
     feature: 'Main Purpose',
     amplify: 'Frontend Hosting',
