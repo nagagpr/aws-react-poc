@@ -23,7 +23,13 @@ const deploymentOptions = [
     name: 'AWS Container',
     purpose: 'Container Deployment',
     flow: {
-      steps: ['React App', 'Docker Build', 'Docker Image', 'Amazon ECR'],
+      steps: [
+        'React App',
+        'GitHub Actions',
+        'Docker Build',
+        'Docker Image',
+        'Amazon ECR',
+      ],
       managedService: {
         name: 'ECS Express Mode',
         steps: [
@@ -45,7 +51,7 @@ const comparisonRows = [
   { feature: 'Docker', amplify: 'No', container: 'Yes' },
   { feature: 'Amazon ECR', amplify: 'No', container: 'Yes' },
   { feature: 'ECS Express Mode', amplify: 'No', container: 'Yes' },
-  { feature: 'Git-based Deployment', amplify: 'Yes', container: 'Optional' },
+  { feature: 'Git-based Deployment', amplify: 'Yes', container: 'Yes' },
   { feature: 'Infrastructure Control', amplify: 'Lower', container: 'Higher' },
   {
     feature: 'Main Purpose',
